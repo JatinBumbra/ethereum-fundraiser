@@ -1,6 +1,10 @@
+import Link from 'next/link';
 import Button from '../common/Button';
+import { useRouter } from 'next/router';
 
 const PendingRequests = () => {
+  const router = useRouter();
+
   return (
     <div className='py-6 my-4 border-t'>
       <h2 className='text-2xl font-semibold'>Pending Requests</h2>
@@ -32,7 +36,9 @@ const PendingRequests = () => {
           </tr>
         </tbody>
       </table>
-      <Button>View Requests</Button>
+      <Link href={`/campaign-details/${router.query.id}/requests`}>
+        <Button>View Requests</Button>
+      </Link>
     </div>
   );
 };

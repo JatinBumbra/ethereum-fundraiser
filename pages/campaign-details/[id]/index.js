@@ -1,10 +1,10 @@
 import React from 'react';
-import Header from '../../components/common/Header';
-import Main from '../../components/common/Main';
-import CampaignInfo from '../../components/campaign-details/CampaignInfo';
-import PendingRequests from '../../components/campaign-details/PendingRequests';
-import ContributeForm from '../../components/campaign-details/ContributeForm';
-import YourContributors from '../../components/campaign-details/YourContributors';
+import Header from '../../../components/common/Header';
+import Main from '../../../components/common/Main';
+import CampaignInfo from '../../../components/campaign-details/CampaignInfo';
+import PendingRequests from '../../../components/campaign-details/PendingRequests';
+import ContributeForm from '../../../components/campaign-details/ContributeForm';
+import YourContributors from '../../../components/campaign-details/YourContributors';
 
 const commonStyle =
   'border rounded-lg hover:shadow-xl focus-within:shadow-xl transition-all';
