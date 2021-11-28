@@ -1,8 +1,7 @@
 import { useState } from 'react';
-import Button from '../components/common/Button';
-import Header from '../components/common/Header';
 import Input from '../components/common/Input';
-import Main from '../components/common/Main';
+import Button from '../components/common/Button';
+import ScreenLayout from '../components/common/ScreenLayout';
 
 const initForm = {
   title: {
@@ -41,28 +40,22 @@ export default function CreateCampaign() {
     });
 
   return (
-    <>
-      <Header />
-      <Main title='Create a Campaign'>
-        {Object.entries(form).map(([key, value]) => (
-          <Input
-            label={value.label}
-            key={key}
-            name={key}
-            type={value.type}
-            min={value.min}
-            onChange={handleChange}
-          />
-        ))}
-        <div className='py-3'>
-          <Button
-            disabled={!Object.values(form).every((i) => i.value)}
-            fullWidth
-          >
-            Create
-          </Button>
-        </div>
-      </Main>
-    </>
+    <ScreenLayout title='Create a Campaign'>
+      {Object.entries(form).map(([key, value]) => (
+        <Input
+          label={value.label}
+          key={key}
+          name={key}
+          type={value.type}
+          min={value.min}
+          onChange={handleChange}
+        />
+      ))}
+      <div className='py-3'>
+        <Button disabled={!Object.values(form).every((i) => i.value)} fullWidth>
+          Create
+        </Button>
+      </div>
+    </ScreenLayout>
   );
 }

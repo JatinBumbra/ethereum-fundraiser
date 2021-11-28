@@ -1,8 +1,7 @@
 import { useState } from 'react';
-import Header from '../../../../components/common/Header';
-import Main from '../../../../components/common/Main';
 import Input from '../../../../components/common/Input';
 import Button from '../../../../components/common/Button';
+import ScreenLayout from '../../../../components/common/ScreenLayout';
 
 const initForm = {
   description: {
@@ -30,29 +29,23 @@ const NewRequest = () => {
     });
 
   return (
-    <>
-      <Header />
-      <Main title='New Request'>
-        {Object.entries(form).map(([key, value]) => (
-          <Input
-            label={value.label}
-            key={key}
-            name={key}
-            type={value.type}
-            min={value.min}
-            onChange={handleChange}
-          />
-        ))}
-        <div className='py-3'>
-          <Button
-            disabled={!Object.values(form).every((i) => i.value)}
-            fullWidth
-          >
-            Create
-          </Button>
-        </div>
-      </Main>
-    </>
+    <ScreenLayout title='New Request'>
+      {Object.entries(form).map(([key, value]) => (
+        <Input
+          label={value.label}
+          key={key}
+          name={key}
+          type={value.type}
+          min={value.min}
+          onChange={handleChange}
+        />
+      ))}
+      <div className='py-3'>
+        <Button disabled={!Object.values(form).every((i) => i.value)} fullWidth>
+          Create
+        </Button>
+      </div>
+    </ScreenLayout>
   );
 };
 
