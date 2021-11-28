@@ -1,8 +1,8 @@
 import { useState } from 'react';
-import Button from '../components/Button';
-import Header from '../components/Header';
-import Input from '../components/Input';
-import Main from '../components/Main';
+import Button from '../components/common/Button';
+import Header from '../components/common/Header';
+import Input from '../components/common/Input';
+import Main from '../components/common/Main';
 
 const initForm = {
   title: {

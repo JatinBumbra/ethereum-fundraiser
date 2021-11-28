@@ -1,5 +1,3 @@
-import React from 'react';
-
 const Main = ({ children, title, para }) => {
   return (
     <main className='px-10 py-4 container mx-auto'>

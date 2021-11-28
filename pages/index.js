@@ -1,11 +1,12 @@
 import Link from 'next/link';
-import Header from '../components/Header';
-import Main from '../components/Main';
+import Header from '../components/common/Header';
+import Main from '../components/common/Main';
 
 export default function Home() {
   const array = new Array(4).fill(true);
+
   return (
-    <div className=''>
+    <>
       <Header />
       <Main
         title='Open Campaigns'
@@ -14,12 +15,14 @@ export default function Home() {
       >
         <div className='grid grid-cols-3 gap-4'>
           {array.map((i, index) => (
-            <Link key={index} href='/'>
-              <div className='border border-gray-300 rounded-md p-4 cursor-pointer transition-all hover:shadow-2xl hover:border-green-600 active:bg-gray-100'>
+            <Link key={index} href={`campaign-details/${index}`}>
+              <div
+                className={`border border-gray-300 rounded-md p-4 cursor-pointer transition-all hover:shadow-2xl hover:border-indigo-600 active:bg-gray-100`}
+              >
                 <h2 className='text-xl text-gray-900 font-semibold'>
                   Project Title
                 </h2>
-                <p className='text-green-600 text-sm mt-1 font-semibold'>
+                <p className={`text-indigo-600 text-sm mt-1 font-semibold`}>
                   100% raised
                 </p>
                 <p className='text-gray-400 text-sm'>by 0x00</p>
@@ -33,6 +36,6 @@ export default function Home() {
           ))}
         </div>
       </Main>
-    </div>
+    </>
   );
 }
