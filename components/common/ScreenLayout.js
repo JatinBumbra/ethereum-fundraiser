@@ -10,13 +10,13 @@ const ScreenLayout = ({ children, title, para }) => {
       <p className='bg-red-500'></p>
       <p className='bg-green-500'></p>
       <p className='bg-yellow-500'></p>
-      {alert?.message ? (
+      {alert.message ? (
         <div
-          className={`bg-${alert.color}-500 text-white p-2 text-sm flex items-center`}
+          className={`bg-${alert.color}-500 text-white flex items-center absolute top-4 left-1/2 p-2 -translate-x-1/2 shadow-lg rounded-md overflow-hidden`}
         >
           <p className='text-center flex-1 px-10'>{alert.message}</p>
           <span
-            className='mr-2 underline cursor-pointer text-xs'
+            className={`p-2 underline cursor-pointer text-xs bg-${alert.color}-600 hover:bg-${alert.color}-700 active:bg-${alert.color}-800 transition-all rounded`}
             onClick={resetAlert}
           >
             Close

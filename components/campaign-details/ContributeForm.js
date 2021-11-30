@@ -38,7 +38,13 @@ const ContributeForm = ({ commonStyle, data, campaign }) => {
         value={input}
         onChange={handleChange}
       />
-      <Button disabled={!input} fullWidth onClick={handleContribute}>
+      <Button
+        disabled={
+          !input || window.web3.utils.fromWei(data?.minimumContribution) > input
+        }
+        fullWidth
+        onClick={handleContribute}
+      >
         Contribute
       </Button>
     </div>

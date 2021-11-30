@@ -62,7 +62,7 @@ const CampaignRequests = () => {
           {data?.requests.map((req, index) => (
             <tr
               className={`border-b border-gray-200 hover:bg-indigo-50 ${
-                req.isCompleted ? 'line-through' : ''
+                req.isCompleted ? 'bg-green-50 hover:bg-green-50' : ''
               }`}
               key={index}
             >
@@ -75,18 +75,32 @@ const CampaignRequests = () => {
                 {req.numApprovers} / {data?.numContributors}
               </td>
               <td
-                className='p-2 bg-green-100 cursor-pointer hover:bg-green-200 active:bg-green-300 transition-all text-green-800'
-                id={index}
-                onClick={approveRequest}
+                className={`${
+                  req.isCompleted ? 'cursor-not-allowed opacity-50' : ''
+                } p-2 bg-green-100 cursor-pointer hover:bg-green-200 active:bg-green-300 transition-all text-green-800`}
               >
-                Approve
+                <button
+                  id={index}
+                  disabled={req.isCompleted}
+                  onClick={approveRequest}
+                  className='disabled:cursor-not-allowed'
+                >
+                  Approve
+                </button>
               </td>
               <td
-                className='p-2 bg-yellow-100 cursor-pointer hover:bg-yellow-200 active:bg-yellow-300 transition-all text-yellow-800'
-                id={index}
-                onClick={finalizeRequest}
+                className={`${
+                  req.isCompleted ? 'cursor-not-allowed opacity-50' : ''
+                } p-2 bg-yellow-100 cursor-pointer hover:bg-yellow-200 active:bg-yellow-300 transition-all text-yellow-800`}
               >
-                Finalize
+                <button
+                  id={index}
+                  disabled={req.isCompleted}
+                  onClick={finalizeRequest}
+                  className='disabled:cursor-not-allowed'
+                >
+                  Finalize
+                </button>
               </td>
             </tr>
           ))}

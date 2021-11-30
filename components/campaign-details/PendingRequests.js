@@ -17,22 +17,26 @@ const PendingRequests = ({ data }) => {
           </tr>
         </thead>
         <tbody>
-          {data?.requests
-            .filter((req) => !req.isCompleted)
-            .map((req, index) => (
-              <tr
-                className='border-b border-gray-200 hover:bg-indigo-50'
-                key={index}
-              >
-                <td className='p-3'>{req.description}</td>
-                <td className='p-3 text-center'>
-                  {window.web3.utils.fromWei(req.value || '0')} ETH
-                </td>
-                <td className='p-3 text-center'>
-                  {req.numApprovers} / {data?.numContributors}
-                </td>
-              </tr>
-            ))}
+          {data?.requests.filter((req) => !req.isCompleted).length ? (
+            data?.requests
+              .filter((req) => !req.isCompleted)
+              .map((req, index) => (
+                <tr
+                  className='border-b border-gray-200 hover:bg-indigo-50'
+                  key={index}
+                >
+                  <td className='p-3'>{req.description}</td>
+                  <td className='p-3 text-center'>
+                    {window.web3.utils.fromWei(req.value || '0')} ETH
+                  </td>
+                  <td className='p-3 text-center'>
+                    {req.numApprovers} / {data?.numContributors}
+                  </td>
+                </tr>
+              ))
+          ) : (
+            <div className='p-2 text-center'>No Pending Requests</div>
+          )}
         </tbody>
       </table>
       <Link href={`/campaign-details/${router.query.id}/requests`}>
