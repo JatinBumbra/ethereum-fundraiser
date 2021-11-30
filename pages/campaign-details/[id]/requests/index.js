@@ -14,14 +14,16 @@ const CampaignRequests = () => {
         </Link>
       </div>
       <table className='my-4 border'>
-        <thead className='border-b-2 border-gray-200 font-semibold'>
-          <td className='p-3'>ID</td>
-          <td className='p-3'>Description</td>
-          <td className='p-3'>Amount</td>
-          <td className='p-3'>Recipeint</td>
-          <td className='p-3'>Approvals</td>
-          <td></td>
-          <td></td>
+        <thead className='border-b-2 border-gray-200 font-semibold text-left'>
+          <tr>
+            <th className='p-3'>ID</th>
+            <th className='p-3'>Description</th>
+            <th className='p-3'>Amount</th>
+            <th className='p-3'>Recipeint</th>
+            <th className='p-3'>Approvals</th>
+            <th></th>
+            <th></th>
+          </tr>
         </thead>
         <tbody>
           <tr className='border-b border-gray-200 hover:bg-indigo-50 transition-all'>

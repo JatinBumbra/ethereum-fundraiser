@@ -9,11 +9,13 @@ const PendingRequests = () => {
     <div className='py-6 my-4 border-t'>
       <h2 className='text-2xl font-semibold'>Pending Requests</h2>
       <table className='mt-6 mb-4 border'>
-        <thead className='border-b-2 border-gray-200 font-semibold'>
-          <td className='p-3'>ID</td>
-          <td className='p-3'>Description</td>
-          <td className='p-3'>Amount</td>
-          <td className='p-3'>Approvals</td>
+        <thead className='border-b-2 border-gray-200 font-semibold text-left'>
+          <tr>
+            <th className='p-3'>ID</th>
+            <th className='p-3'>Description</th>
+            <th className='p-3'>Amount</th>
+            <th className='p-3'>Approvals</th>
+          </tr>
         </thead>
         <tbody>
           <tr className='border-b border-gray-200 hover:bg-indigo-50'>
