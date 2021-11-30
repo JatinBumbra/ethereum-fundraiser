@@ -1,9 +1,29 @@
 import Link from 'next/link';
+import { useEffect, useState } from 'react';
 import ScreenLayout from '../components/common/ScreenLayout';
 import { useAppContext } from '../state';
 
 export default function Home() {
-  const { campaignData } = useAppContext();
+  const { deployedCampaigns } = useAppContext();
+  const [campaigns, setCampaigns] = useState();
+
+  useEffect(() => {
+    const init = async () => {
+      const data = await Promise.all(
+        Array.from(deployedCampaigns.values()).map(async (instance) => ({
+          _address: instance._address,
+          admin: await instance.methods.admin().call(),
+          title: await instance.methods.title().call(),
+          description: await instance.methods.description().call(),
+          goal: await instance.methods.goal().call(),
+          deadline: await instance.methods.deadline().call(),
+          raisedAmount: await instance.methods.raisedAmount().call(),
+        }))
+      );
+      setCampaigns(data);
+    };
+    deployedCampaigns && init();
+  }, [deployedCampaigns]);
 
   return (
     <ScreenLayout
@@ -11,13 +31,13 @@ export default function Home() {
       para='Click on a campaign to view full details and support the project
         creator by donating some crypto'
     >
-      {!campaignData || !campaignData.length ? (
+      {!campaigns || !campaigns.length ? (
         <div>
           <h1 className='text-2xl'>No Campaigns are currently present</h1>
         </div>
       ) : (
         <div className='grid lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 gap-4 break-words'>
-          {campaignData.map((campaign) => (
+          {campaigns.map((campaign) => (
             <Link
               key={campaign._address}
               href={`campaign-details/${campaign._address}`}

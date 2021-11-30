@@ -77,6 +77,10 @@ contract Campaign {
         contributors[recipient] = 0;
     }
 
+    function getRequests() public view returns(Request[] memory) {
+        return requests;
+    }
+
     function createRequest(
         string memory _description,
         address _recipient,

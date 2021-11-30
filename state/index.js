@@ -15,7 +15,7 @@ export function AppState({ children }) {
   const [alert, setAlert] = useState(initAlert);
   const [factory, setFactory] = useState();
   const [contractsLoaded, setContractsLoaded] = useState(false);
-  const [campaignData, setCampaignData] = useState();
+  const [deployedCampaigns, setDeployedCampaigns] = useState();
   const [address, setAddress] = useState();
 
   const resetAlert = () => setAlert(initAlert);
@@ -70,25 +70,14 @@ export function AppState({ children }) {
         .getDeployedCampaigns()
         .call();
       // Load the campaigns data
-      const campaignData = await Promise.all(
-        deployedCampaigns.map(async (item) => {
-          const instance = new web3.eth.Contract(CampaignContract.abi, item);
-          return {
-            _address: item,
-            admin: await instance.methods.admin().call(),
-            title: await instance.methods.title().call(),
-            description: await instance.methods.description().call(),
-            minimumContribution: await instance.methods
-              .minimumContribution()
-              .call(),
-            goal: await instance.methods.goal().call(),
-            deadline: await instance.methods.deadline().call(),
-            raisedAmount: await instance.methods.raisedAmount().call(),
-            numContributors: await instance.methods.numContributors().call(),
-          };
-        })
-      );
-      setCampaignData(campaignData);
+      const campaignData = new Map();
+      deployedCampaigns.forEach((item) => {
+        campaignData.set(
+          item,
+          new web3.eth.Contract(CampaignContract.abi, item)
+        );
+      });
+      setDeployedCampaigns(campaignData);
     }
     // If contracts are not deployed, then show error
     if (campaignData && factoryData) {
@@ -118,7 +107,7 @@ export function AppState({ children }) {
         setLoading,
         address,
         factory,
-        campaignData,
+        deployedCampaigns,
         contractsLoaded,
         loadBlockchainData,
         setContractsNotLoadedAlert,

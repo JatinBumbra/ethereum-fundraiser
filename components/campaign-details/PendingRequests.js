@@ -2,7 +2,7 @@ import Link from 'next/link';
 import Button from '../common/Button';
 import { useRouter } from 'next/router';
 
-const PendingRequests = () => {
+const PendingRequests = ({ data }) => {
   const router = useRouter();
 
   return (
