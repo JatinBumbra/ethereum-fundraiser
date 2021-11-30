@@ -107,10 +107,11 @@ export default function CreateCampaign() {
           onChange={handleChange}
         />
       ))}
-      <div className='py-3' onClick={handleCreate}>
+      <div className='py-3'>
         <Button
           disabled={!Object.values(form).every((i) => i.value) || loading}
           fullWidth
+          onClick={handleCreate}
         >
           Create
         </Button>

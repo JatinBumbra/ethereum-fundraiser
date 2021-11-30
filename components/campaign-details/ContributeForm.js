@@ -4,14 +4,18 @@ import { useState } from 'react';
 import { useAppContext } from '../../state';
 
 const ContributeForm = ({ commonStyle, data, campaign }) => {
-  const {} = useAppContext();
+  const { address } = useAppContext();
   const [input, setInput] = useState();
 
   const handleChange = (e) => setInput(e.target.value);
 
   const handleContribute = async () => {
     try {
+      await campaign.methods
+        .contribute()
+        .send({ from: address, value: window.web3.utils.toWei(input) });
     } catch (error) {
+      console.log(error);
     } finally {
     }
   };

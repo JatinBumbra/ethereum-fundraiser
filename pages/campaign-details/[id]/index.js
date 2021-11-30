@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 // Components
 import CampaignInfo from '../../../components/campaign-details/CampaignInfo';
 import PendingRequests from '../../../components/campaign-details/PendingRequests';
@@ -35,9 +35,7 @@ const CampaignDetails = () => {
           .minimumContribution()
           .call(),
         myContributions: await campaign.methods.contributors(address).call(),
-        requests: (await campaign.methods.getRequests().call())
-          .reverse()
-          .slice(0, 3),
+        requests: await campaign.methods.getRequests().call(),
       };
       setData(data);
       setCampaign(campaign);

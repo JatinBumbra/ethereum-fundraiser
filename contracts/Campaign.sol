@@ -50,7 +50,7 @@ contract Campaign {
     function contribute() public payable {
         require(block.timestamp < deadline, "Crowdfunding has ended.");
         require(
-            msg.value < minimumContribution,
+            msg.value >= minimumContribution,
             "Please send the minimum contribution amount"
         );
         // If msg.sender is a new contributor, then increment the number of contributors
@@ -124,7 +124,7 @@ contract Campaign {
         );
         // Ensure that atleast half the contributers have approved
         require(
-            request.numApprovers > (numContributors / 2),
+            request.numApprovers >= (numContributors / 2),
             "Not enough approvers have agreed upon this request"
         );
 
