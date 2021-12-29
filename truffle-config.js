@@ -13,10 +13,11 @@ module.exports = {
     },
     ropsten: {
       provider: () => {
-        return new HDWalletProvider(
-          process.env.MNEMONICS,
-          `https://ropsten.infura.io/v3/${process.env.INFURA_PROJECT_ID}`
-        );
+        return new HDWalletProvider({
+          mnemonic: process.env.MNEMONICS,
+          providerOrUrl: `https://ropsten.infura.io/v3/${process.env.INFURA_PROJECT_ID}`,
+          addressIndex: 1,
+        });
       },
       network_id: '3', // eslint-disable-line camelcase
       gas: 4465030,

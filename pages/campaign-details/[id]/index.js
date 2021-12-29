@@ -43,7 +43,7 @@ const CampaignDetails = () => {
     deployedCampaigns && init();
   }, [deployedCampaigns, router]);
 
-  return (
+  return data ? (
     <ScreenLayout title={data?.title} para={`by ${data?.admin}`}>
       <div className='grid grid-cols-2 pb-10'>
         <div>
@@ -60,7 +60,7 @@ const CampaignDetails = () => {
         </div>
       </div>
     </ScreenLayout>
-  );
+  ) : null;
 };
 
 export default CampaignDetails;

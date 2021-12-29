@@ -12,7 +12,7 @@ const ScreenLayout = ({ children, title, para }) => {
       <p className='bg-yellow-500'></p>
       {alert.message ? (
         <div
-          className={`bg-${alert.color}-500 text-white flex items-center absolute top-4 left-1/2 p-2 -translate-x-1/2 shadow-lg rounded-md overflow-hidden`}
+          className={`bg-${alert.color}-500 text-white flex items-center fixed top-4 left-1/2 p-2 -translate-x-1/2 shadow-lg rounded-md overflow-hidden`}
         >
           <p className='text-center flex-1 px-10'>{alert.message}</p>
           <span
